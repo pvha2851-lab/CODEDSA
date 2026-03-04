@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		ll a,b;
+		cin>>a>>b;
+		while(true){
+			if(b%a==0){
+				cout<<"1/"<<b/a;
+				break;
+			}
+			else{
+				ll res=(a+b-1)/a;
+				cout<<"1/"<<res<<" + ";
+				a=res*a-b;
+				b=b*res;
+			}
+		}
+		cout<<endl;
+	}
+	return 0;
+}
