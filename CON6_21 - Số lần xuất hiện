@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool cmp(pair<int,int> a,pair<int,int> b){
+	if(a.second==b.second)	return a.first<b.first;
+	return a.second>b.second;
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int a[n];
+		map<int,int> cnt;
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+			cnt[a[i]]++;
+		}
+		int l=cnt.size();
+		pair<int,int> p[l];
+		int i=0;
+		for(auto it:cnt){
+			p[i++]=make_pair(it.first,it.second);
+		}
+		sort(p,p+l,cmp);
+		for(int i=0;i<l;i++){
+			for(int j=0;j<p[i].second;j++)
+				cout<<p[i].first<<" ";
+		}
+		cout<<endl;
+	}
+	return 0;
+}
