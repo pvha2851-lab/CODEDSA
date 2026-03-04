@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		ll n,m;
+		cin>>n>>m;
+		vector<ll> A(n),B(m);
+		for(int i=0;i<n;i++){
+			cin>>A[i];
+		}
+		for(int i=0;i<m;i++){
+			cin>>B[i];
+		}
+		ll d_max=*max_element(A.begin(),A.end());
+		ll d_min=*min_element(B.begin(),B.end());
+		cout<<d_max*d_min<<endl;
+	}
+	return 0;
+}
