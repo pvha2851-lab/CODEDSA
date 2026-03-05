@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int n=8;
+ll A[9][9],point;
+bool hang[9],cot[9],cheoxuoi[18],cheonguoc[18];
+void Try(int i,ll sum){
+	for(int j=1;j<=n;j++){
+		if(!hang[i]&&!cot[j]&&!cheoxuoi[i+j-1]&&!cheonguoc[i-j+n]){
+			hang[i]=cot[j]=cheoxuoi[i+j-1]=cheonguoc[i-j+n]=true;
+			if(i==n){
+				point=max(sum+A[i][j],point);
+			}
+			else Try(i+1,sum+A[i][j]);
+			hang[i]=cot[j]=cheoxuoi[i+j-1]=cheonguoc[i-j+n]=false;
+		}
+	}
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		point=0;
+		for(int i=1;i<=n;i++){
+			for(int j=1;j<=n;j++){
+				cin>>A[i][j];
+			}
+		}
+		Try(1,0);
+		cout<<point<<endl;
+	}
+	return 0;
+}
