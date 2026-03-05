@@ -2,7 +2,7 @@
 using namespace std;
 int n,cnt;
 bool hang[15],cot[15],cheoxuoi[30],cheonguoc[30];
-bool Try(int i){
+void Try(int i){
 	for(int j=1;j<=n;j++){
 		if(!hang[i]&&!cot[j]&&!cheoxuoi[i+j-1]&&!cheonguoc[i-j+n]){
 			hang[i]=cot[j]=cheoxuoi[i+j-1]=cheonguoc[i-j+n]=true;
