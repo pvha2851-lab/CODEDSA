@@ -31,6 +31,7 @@ int main(){
 	cin>>t;
 	while(t--){
 		nhap();
+		cout<<endl;
 	}
 	return 0;
 }
