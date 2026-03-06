@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+const ll mod=1e9+7;
+ll C[1005][1005];
+void tohop(){
+	for(int n=0;n<=100;n++){
+			C[n][0]=C[n][n]=1;
+			for(int k=1;k<n;k++){
+				C[n][k]=(C[n-1][k-1]+C[n-1][k])%mod;
+			}
+	}
+}
+int main(){
+	tohop();
+	int t;
+	cin>>t;
+	while(t--){
+		int n,k;
+		cin>>n>>k;
+		cout<<C[n][k]<<endl;
+	}
+	return 0;
+}
