@@ -49,6 +49,7 @@ void nhap(){
 		adj[x].push_back(y);
 		adj[y].push_back(x);
 	}
+	memset(visited,false,sizeof(visited);
 	path(s,t);
 }
 int main(){
