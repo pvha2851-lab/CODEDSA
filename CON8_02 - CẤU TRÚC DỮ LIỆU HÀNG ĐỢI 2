@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	deque<int> Q;
+	cin.ignore();
+	while(t--){
+		string s;
+		cin>>s;
+		if(s=="PUSH"){
+			int x;
+			cin>>x;
+			Q.push_back(x);
+		}	
+		else if(s=="PRINTFRONT"){
+			if(Q.empty()){
+				cout<<"NONE\n";
+			}
+			else{
+				cout<<Q.front()<<endl;
+			}
+		}
+		else if(s=="POP"){
+			if(!Q.empty()){
+				Q.pop_front();
+			}
+		}
+	}
+	return 0;
+}
