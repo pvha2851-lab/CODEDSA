@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int k;
+		cin>>k;
+		string s;
+		cin>>s;
+		map<char,int> cnt;
+		for(char c:s){
+			cnt[c]++;
+		}
+		priority_queue<int> Q;
+		for(auto x:cnt){
+			Q.push(x.second);
+		}
+		while(k--){
+			int x=Q.top();Q.pop();
+			Q.push(x-1);
+		}
+		ll sum=0;
+		while(!Q.empty()){
+			int x=Q.top();Q.pop();
+			sum+=x*x;
+		}
+		cout<<sum<<endl;
+	}
+	return 0;
+}
