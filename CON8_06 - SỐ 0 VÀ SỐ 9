@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(int n){
+	queue<string> Q;
+	Q.push("9");
+	while(true){
+		string s1=Q.front();Q.pop();
+		long long m=stoll(s1);
+		if(m%n==0){
+			cout<<m<<endl;
+			return;
+		}
+		string s2=s1;
+		Q.push(s1+"0");
+		Q.push(s2+"9");
+	}
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		solve(n);
+	}
+	return 0;
+}
