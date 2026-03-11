@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+const ll mod=1e9+7;
+ll daonguoc(ll x){
+	ll res=0;
+	while(x!=0){
+		res=res*10+x%10;
+		x=x/10;
+	}
+	return res;
+}
+ll binpow(ll x,ll y){
+	ll res=1;
+	while(y>0){
+		if(y%2==1)	res=res*x%mod;
+		x=x*x%mod;
+		y=y/2;
+	}
+	return res;
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		ll n;
+		cin>>n;
+		ll r=daonguoc(n);
+		cout<<binpow(n,r)<<endl;
+	}
+	return 0;
+}
