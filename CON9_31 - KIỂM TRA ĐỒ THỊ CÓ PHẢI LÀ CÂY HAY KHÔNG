@@ -1,0 +1,53 @@
+//dieu kien la cay
+//m=n-1
+//lien thong
+//Khong co chu trinh
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> adj[1005];
+bool visited[1005];
+void DFS(int u){
+	visited[u]=true;
+	for(int v:adj[u]){
+		if(!visited[v]){
+			DFS(v);
+		}
+	}
+}
+bool lienthong(int n){
+	for(int i=1;i<=n;i++){
+		if(!visited[i]){
+			return false;
+		}
+	}
+	return true;
+}
+bool nhap(){
+	for(int i=1;i<1005;i++){
+		adj[i].clear();
+	}
+	memset(visited,false,sizeof(visited));
+	int n;
+	cin>>n;
+	for(int i=1;i<=n-1;i++){
+		int x,y;
+		cin>>x>>y;
+		adj[x].push_back(y);
+		adj[y].push_back(x);
+	}
+	DFS(1);
+	if(lienthong(n)){
+		cout<<"YES\n";
+	}
+	else{
+		cout<<"NO\n";
+	}
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		nhap();
+	}
+	return 0;
+}
