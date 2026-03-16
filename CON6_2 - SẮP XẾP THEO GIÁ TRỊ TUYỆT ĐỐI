@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll x;
+bool cmp(ll a,ll b){
+	return abs(x-a)<abs(x-b);
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n>>x;
+		vector<ll> a(n);
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+		}
+		stable_sort(a.begin(),a.end(),cmp);//stable_sort neu phan tu nao bang nhau thi phan tu dung truoc se sap xep truoc
+		for(int x:a){
+			cout<<x<<" ";
+		}
+		cout<<endl;
+	}
+	return 0;
+}
