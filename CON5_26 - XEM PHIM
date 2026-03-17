@@ -4,27 +4,20 @@ int main(){
 	int t;
 	cin>>t;
 	while(t--){
-		int C,N;
-		cin>>C>>N;
-		vector<int> w(N);
-		for(int i=0;i<N;i++){
+		int C,n;
+		cin>>C>>n;
+		vector<int> w(n);
+		for(int i=1;i<=n;i++){
 			cin>>w[i];
 		}
-		vector<bool> dp(C+1,false);
-		dp[0]=true;
-		for(int weight:w){
-			for(int s=C;s>=weight;s--){
-				if(dp[s-weight]){
-					dp[s]=true;
-				}
+		vector<vector<int>> dp(n+5,vector<int>(C+5));
+		for(int i=1;i<=n;i++){
+			for(int j=1;j<=C;j++){
+				dp[i][j]=dp[i-1][j];
+				if(j>=w[i])	dp[i][j]=max(dp[i][j],dp[i-1][j-w[i]]+w[i]);
 			}
 		}
-		for(int s=C;s>=0;s--){
-			if(dp[s]){
-				cout<<s<<endl;
-				break;
-			}
-		}
+		cout<<dp[n][C]<<endl;
 	}
 	return 0;
 }
