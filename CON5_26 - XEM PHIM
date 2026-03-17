@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int C,N;
+		cin>>C>>N;
+		vector<int> w(N);
+		for(int i=0;i<N;i++){
+			cin>>w[i];
+		}
+		vector<bool> dp(C+1,false);
+		dp[0]=true;
+		for(int weight:w){
+			for(int s=C;s>=weight;s--){
+				if(dp[s-weight]){
+					dp[s]=true;
+				}
+			}
+		}
+		for(int s=C;s>=0;s--){
+			if(dp[s]){
+				cout<<s<<endl;
+				break;
+			}
+		}
+	}
+	return 0;
+}
