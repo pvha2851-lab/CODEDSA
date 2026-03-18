@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	cin.ignore();
+	while(t--){
+		string s;
+		getline(cin,s);
+		stack<int> stk;
+		for(char c:s){
+			if(c>='0'&&c<='9'){
+				stk.push(c-'0');
+			}
+			else{
+				int b=stk.top();stk.pop();
+				int a=stk.top();stk.pop();
+				int res=0;
+				if(c=='+')	res=a+b;
+				else if(c=='-')	res=a-b;
+				else if(c=='*')	res=a*b;
+				else if(c=='/')	res=a/b;
+				stk.push(res);	
+			}
+		}
+		cout<<stk.top()<<endl;
+	}
+	return 0;
+}
