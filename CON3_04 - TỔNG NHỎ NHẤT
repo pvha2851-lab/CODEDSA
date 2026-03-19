@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int a[n];
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+		}
+		sort(a,a+n);
+		ll so1=0,so2=0;
+		for(int i=0;i<n;i+=2){
+			so1=so1*10+a[i];
+		}
+		for(int i=1;i<n;i+=2){
+			so2=so2*10+a[i];
+		}
+		cout<<so1+so2<<endl;
+	}
+	return 0;
+}
