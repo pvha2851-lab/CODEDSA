@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int solve(int S,int T){
+	int res=0;
+	while(T>S){
+		if(T%2==0)	T=T/2;
+		else	T=T+1;
+		res++;
+	}
+	return res+(S-T);
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int S,T;
+		cin>>S>>T;
+		cout<<solve(S,T)<<endl;
+	}
+	return 0;
+}
