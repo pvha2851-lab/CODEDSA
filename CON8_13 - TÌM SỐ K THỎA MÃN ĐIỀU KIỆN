@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool check(int n){
+	if(n<=9){
+		if(n>5)	return false;
+		return true;
+	}
+	int a[10]={0};
+	while(n!=0){
+		int r=n%10;
+		a[r]++;
+		if(a[r]>=2||r>5)	return false;
+		n=n/10;
+	}
+	return true;
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int L,R;
+		cin>>L>>R;
+		int res=0;
+		for(int i=L;i<=R;i++){
+			if(check(i)){
+				res++;
+			}
+		}
+		cout<<res<<endl;
+	}
+	return 0;
+}
