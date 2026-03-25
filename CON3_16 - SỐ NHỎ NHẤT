@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int S,D;
+		cin>>S>>D;
+		if(S>9*D||S==0&&D>1){
+			cout<<-1<<endl;
+		}
+		else{
+			vector<int> a(D,0);
+			S=S-1;//dam bao so dau khong phai so khong
+			for(int i=D-1;i>0;i--){
+				if(S>9){
+					a[i]=9;
+					S=S-9;
+				}
+				else{
+					a[i]=S;
+					S=0;
+				}
+			}
+			a[0]=S+1;
+			for(int x:a)	cout<<x;
+			cout<<endl;
+		}
+	}
+	return 0;
+}
