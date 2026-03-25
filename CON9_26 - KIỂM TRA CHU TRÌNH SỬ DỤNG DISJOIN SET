@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> adj[1005];
+bool visited[1005];
+int parent[1005];
+void DFS(int u,int& check){
+	visited[u]=true;
+	for(int v:adj[u]){
+		if(!visited[v]){
+			parent[v]=u;
+			DFS(v,check);
+		}
+		else if(parent[u]!=v)	check=1;
+	}
+}
+void nhap(){
+	for(int i=1;i<1005;i++){
+		adj[i].clear();
+	}
+	memset(visited,false,sizeof(visited));
+	memset(parent,0,sizeof(parent));
+	int n,m;
+	cin>>n>>m;
+	for(int i=1;i<=m;i++){
+		int x,y;
+		cin>>x>>y;
+		adj[x].push_back(y);
+		adj[y].push_back(x);
+	}
+	int check=0;
+	for(int i=1;i<=n;i++){
+		memset(visited,false,sizeof(visited));
+		memset(parent,0,sizeof(parent));
+		DFS(i,check);
+		if(check==1){
+			cout<<"YES\n";
+			break;
+		}
+		else{
+			cout<<"NO\n";
+			break;
+		}
+	}
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		nhap();
+	}
+	return 0;
+}
