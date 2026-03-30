@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+	int data;
+	node *left;
+	node *right;
+};
+node* makeNode(int x){
+	node *newNode=new node;
+	newNode->data=x;
+	newNode->right=NULL;
+	newNode->left=NULL;
+	return newNode;
+}
+//chen vao BST
+node* insert(node *root,int x){
+	if(root==NULL)	return makeNode(x);
+	if(x<root->data)	root->left=insert(root->left,x);
+	else if(x>root->data)	root->right=insert(root->right,x);
+	return root;
+}
+//tim LCA
+node* LCA(node* root,int u,int v){
+	if(root==NULL)	return NULL;
+	if(u<root->data&&v<root->data)	root=LCA(root->left,u,v);
+	else if(u>root->data&&v>root->data)	root=LCA(root->right,u,v);
+	return root;
+}
+node* findNode(node* root,int x){
+	if(root==NULL)	return NULL;
+	if(root->data==x)	return root;
+	node *left=findNode(root->left,x);
+	if(left!=NULL) return left;
+	return findNode(root->right,x);
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n,q;
+		cin>>n>>q;
+		node *root=NULL;
+		for(int i=0;i<n;i++){
+			int x;cin>>x;
+			root=insert(root,x);
+		}
+		while(q--){
+			int u,v;
+			cin>>u>>v;
+			if(findNode(root,u)==NULL||findNode(root,v)==NULL){
+				cout<<-1<<endl;
+			}
+			else{
+				node *res=LCA(root,u,v);
+				if(res==NULL)	cout<<-1<<endl;
+				else	cout<<res->data<<endl;
+			}
+		}
+	}
+	return 0;
+}
