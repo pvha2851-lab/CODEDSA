@@ -2,53 +2,38 @@
 using namespace std;
 string minstring(string s){
 	for(char &c:s){
-		if(c=='6'){
-			c='5';
-		}
+		if(c=='6')	c='5';
 	}
 	return s;
 }
 string maxstring(string s){
 	for(char &c:s){
-		if(c=='5'){
-			c='6';
-		}
+		if(c=='5')	c='6';
 	}
 	return s;
 }
 string sumstring(string s1,string s2){
-	if(s1.size()>s2.size())	swap(s1,s2);
-	int n1=s1.size();
-	int n2=s2.size();
+	while(s1.size()<s2.size())	s1="0"+s1;
+	while(s1.size()>s2.size())	s2="0"+s2;
+	int carry=0;
 	string res="";
-	int carry=0,sum=0,d=n2-n1;
-	for(int i=n1-1;i>=0;i--){
-		sum=(s1[i]-'0')+(s2[i+d]-'0')+carry;
+	for(int i=s1.size()-1;i>=0;i--){
+		int sum=(s1[i]-'0')+(s2[i]-'0')+carry;
 		res.push_back(sum%10+'0');
-		carry=sum/10;
+		carry=sum/10;	
 	}
-	for(int i=d-1;i>=0;i--){
-		sum=(s2[i]-'0')+carry;
-		res.push_back(sum%10+'0');
-		carry=sum/10;
-	}
-	if(carry>0)	res.push_back(carry+'0');
+	if(carry>0)	res=res+"1";
 	reverse(res.begin(),res.end());
 	return res;
 }
 int main(){
-	int t;
-	cin>>t;
-	while(t--){
-		cin.ignore();
-		string a,b;
-		cin>>a>>b;
-		a=minstring(a);
-		b=minstring(b);
-		cout<<sumstring(a,b)<<" ";
-		a=maxstring(a);
-		b=maxstring(b);
-		cout<<sumstring(a,b)<<endl;
-	}
+	string a,b;
+	cin>>a>>b;
+	a=minstring(a);
+	b=minstring(b);
+	cout<<sumstring(a,b)<<" ";
+	a=maxstring(a);
+	b=maxstring(b);
+	cout<<sumstring(a,b);
 	return 0;
 }
