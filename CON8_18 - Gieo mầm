@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct data{
+	int x,y,s;
+};
+int rx[]={0,0,-1,1};
+int ry[]={-1,1,0,0};
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n,m,ans=0;
+		cin>>n>>m;
+		data u,v;
+		u.s=0;
+		queue<data> Q;
+		int a[n+5][m+5];
+		for(int i=1;i<=n;i++){
+			for(int j=1;j<=m;j++){
+				cin>>a[i][j];
+				if(a[i][j]==2){
+					u.x=i;
+					u.y=j;
+					Q.push(u);
+				}
+			}
+		}
+		while(!Q.empty()){
+			u=Q.front();Q.pop();
+			ans=max(ans,u.s);
+			for(int k=0;k<4;k++){
+				v.x=u.x+rx[k];
+				v.y=u.y+ry[k];
+				if(v.x>=1&&v.x<=n&&v.y>=1&&v.y<=m&&a[v.x][v.y]==1){
+					a[v.x][v.y]=2;
+					v.s=u.s+1;
+					Q.push(v);
+				}
+			}
+		}
+		for(int i=1;i<=n;i++){
+			for(int j=1;j<=m;j++){
+				if(a[i][j]==1)	ans=-1;
+			}
+		}
+		cout<<ans<<endl;
+	}
+	return 0;
+}
