@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+//trung to->hau to(loai bo dau ngoac) roi tinh toan
+using namespace std;
+int uutien(char c){
+	if(c=='+'||c=='-')	return 1;
+	if(c=='*'||c=='/')	return 2;
+	return 0;
+}
+string hauto(string s){
+	stack<char> stk;
+	string res="";
+	for(int i=0;i<s.size();i++){
+		if(s[i]>='0'&&s[i]<='9'){
+			while(i<s.size()&&s[i]>='0'&&s[i]<='9'){
+				res+=s[i];
+				i++;
+			}
+			res+=" ";
+			i--;
+		}
+		else if(s[i]=='(')	stk.push(s[i]);
+		else if(s[i]==')'){
+			while(!stk.empty()&&stk.top()!='('){
+				res+=stk.top();stk.pop();
+				res+=" ";
+			}
+			if(!stk.empty())	stk.pop();
+		}
+		else{
+			while(!stk.empty()&&uutien(stk.top())>=uutien(s[i])){
+				res+=stk.top();stk.pop();
+				res+=" ";
+			}
+			stk.push(s[i]);
+		}
+	}
+	while(!stk.empty()){
+		res+=stk.top();stk.pop();
+		res+=" ";
+	}
+	return res;
+}
+long tinh(string s){
+	stack<long long> stk;
+	stringstream ss(s);
+	string c;
+	while(ss>>c){
+		if(c=="+"||c=="*"||c=="-"||c=="/"){
+			int top1=stk.top();stk.pop();
+			int top2=stk.top();stk.pop();
+			int top;
+			if(c=="+")	top=top2+top1;
+			else if(c=="-")	top=top2-top1;
+			else if(c=="*")	top=top2*top1;
+			else if(c=="/"){
+				if(top1==0)	return 0;
+				top=top2/top1;
+			}
+			stk.push(top);
+		}
+		else{
+			stk.push(stoll(c));
+		}
+	}
+	return stk.top();
+}
+int main(){
+	int t;
+	cin>>t;cin.ignore();
+	while(t--){
+		string s;getline(cin,s);
+		cout<<tinh(hauto(s))<<endl;
+	}
+	return 0;
+}
