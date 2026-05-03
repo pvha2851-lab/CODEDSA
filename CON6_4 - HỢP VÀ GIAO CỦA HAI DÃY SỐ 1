@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n,m;cin>>n>>m;
+		vector<int> a(n);
+		set<int> b,c;
+		for(int i=0;i<n;i++){
+			int x;cin>>x;
+			b.insert(x);
+		}
+		int k=0;
+		for(int i=1;i<=
+		m;i++){
+			int x;cin>>x;
+			b.insert(x);
+			if(n+i-b.size()-k!=0){
+				c.insert(x);
+				k++;
+			}
+		}
+		for(int x:b)	cout<<x<<" ";
+		cout<<endl;
+		for(int x:c)	cout<<x<<" ";
+		cout<<endl;
+	}
+	return 0;
+}
