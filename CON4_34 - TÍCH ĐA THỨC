@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n,m;
+		cin>>n>>m;
+		vector<ll> P(n),Q(m);
+		for(int i=0;i<n;i++)	cin>>P[i];
+		for(int i=0;i<m;i++)	cin>>Q[i];
+		vector<ll> R(n+m-1,0);
+		for(int i=0;i<n;i++){
+			for(int j=0;j<m;j++){
+				R[i+j]+=P[i]*Q[j];
+			}
+		}
+		for(ll x:R)	cout<<x<<" ";
+		cout<<endl;
+	}
+	return 0;
+}
