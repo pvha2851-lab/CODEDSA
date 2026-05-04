@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll biendoiso(string s){
+	int n=s.size();
+	ll k=1;
+	ll res=0;
+	for(int i=n-1;i>=0;i--){
+		if(s[i]=='1')	res+=k;
+		k=k*2;
+	}
+	return res;
+}
+int main(){
+	int t;
+	cin>>t;cin.ignore();
+	while(t--){
+		string s1,s2;
+		cin>>s1>>s2;
+		ll x1=biendoiso(s1),x2=biendoiso(s2);
+		cout<<x1*x2<<endl;
+	}
+	return 0;
+}
