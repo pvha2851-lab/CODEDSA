@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll binarysearch(ll a[],ll n,ll x){
+	int l=0,r=n-1;
+	int res=-2;
+	while(l<=r){
+		ll mid=l+(r-l)/2;
+		if(a[mid]<=x){
+			res=mid;
+			l=mid+1;
+		}
+		else{
+			r=mid-1;
+		}
+	}
+	return res+1;
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		ll n,x;
+		cin>>n>>x;
+		ll a[n];
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+		}
+		sort(a,a+n);
+		cout<<binarysearch(a,n,x)<<endl;
+	}
+	return 0;
+}
