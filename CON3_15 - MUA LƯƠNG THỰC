@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+#define ll unsigned long long
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+    	ll n,s,m;
+    	cin>>n>>s>>m;
+    	if(m>n||s>6&&7*m>6*n){
+    		cout<<-1<<endl;
+		}
+		else{
+        	ll total_food =s*m;
+        	//tinh so ngay it nhat can di mua
+        	ll day_min=(total_food+n-1)/n;
+        	cout<<day_min<<endl;
+		}
+	}
+	return 0;
+}
