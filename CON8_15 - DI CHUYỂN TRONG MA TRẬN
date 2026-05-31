@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct point{
+	int x,y;
+};
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n,m;
+		cin>>n>>m;
+		int a[n][m];
+		for(int i=0;i<n;i++){
+			for(int j=0;j<m;j++)	cin>>a[i][j];
+		}
+		vector<vector<int>> d(n+5,vector<int>(m+5,-1));
+		queue<point> Q;
+		// xuat phat tu (0,0) nen so buoc la 0
+		Q.push({0,0});
+		d[0][0]=0;
+		bool ok=false;
+		while(!Q.empty()){
+			point tmp=Q.front();Q.pop();
+			int rx=tmp.x;
+			int ry=tmp.y;
+			if(rx==n-1&&ry==m-1){
+				cout<<d[rx][ry]<<endl;
+				ok=true;
+				break;
+			}
+			//huong1
+			int tmp1=a[rx][ry]+ry;
+			if(tmp1<m&&d[rx][tmp1]==-1){
+				d[rx][tmp1]=d[rx][ry]+1;
+				Q.push({rx,tmp1});
+			}
+			//huong2
+			int tmp2=a[rx][ry]+rx;
+			if(tmp2<n&&d[tmp2][ry]==-1){
+				d[tmp2][ry]=d[rx][ry]+1;
+				Q.push({tmp2,ry});
+			}
+		}
+		if(!ok)	cout<<-1<<endl;
+	}
+	return 0;
+}
