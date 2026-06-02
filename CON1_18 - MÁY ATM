@@ -1,17 +1,17 @@
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
-int n;
-ll s,a[35];
+int n,k;
 int cost_min;
+ll a[35];//phai dung mang dung vector la sai
 void Try(int i,ll sum,int cnt){
-	if(sum==s){
+	if(sum==k){
 		cost_min=min(cost_min,cnt);
-		return;
+        return;
 	}
-	if(i==n||cnt>=cost_min)	return;
+	if(sum>k||cnt>=cost_min)	return;
 	for(int j=i;j<n;j++){
-		if(sum+a[j]<=s){
+		if(a[j]+sum<=k){
 			Try(j+1,sum+a[j],cnt+1);
 		}
 	}
@@ -20,15 +20,16 @@ int main(){
 	int t;
 	cin>>t;
 	while(t--){
-		cin>>n>>s;
+		cin>>n>>k;
 		for(int i=0;i<n;i++){
 			cin>>a[i];
 		}
 		sort(a,a+n,greater<ll>());
 		cost_min=INT_MAX;
 		Try(0,0,0);
-		if(cost_min==INT_MAX)	cout<<-1<<endl;
-		else cout<<cost_min<<endl;
+		if(cost_min==INT_MAX)	cout<<-1;
+		else	cout<<cost_min;
+		cout<<endl;
 	}
 	return 0;
 }
