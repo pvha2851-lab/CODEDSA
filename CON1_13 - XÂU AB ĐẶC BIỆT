@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,k,a[105];
+bool final;
+vector<string> res;
+bool check(){
+	int d=0,cnt=0;
+	for(int i=1;i<=n;i++){
+		if(a[i]==0){
+			d++;
+			if(d>k)	return 0;
+			if(d==k)	cnt++;
+		}
+		else d=0;
+	}
+	return cnt==1;
+}
+void sinh(){
+	int i=n;
+	while(i>=1&&a[i]==1){
+		i--;
+	}
+	if(i==0)	final=false;
+	else{
+		a[i]=1;
+		for(int j=i+1;j<=n;j++)	a[j]=0;
+	}
+}
+int main(){
+	cin>>n>>k;
+	memset(a,0,sizeof(a));
+	final=true;
+	while(final){
+		if(check()){
+			string s="";
+			for(int i=1;i<=n;i++){
+				if(a[i]==0){
+					s+="A ";
+				}
+				else s+="B ";
+			}
+			res.push_back(s);
+		}
+		sinh();
+	}
+	cout<<res.size()<<endl;
+	for(string x:res)	cout<<x<<endl;
+	return 0;
+}
