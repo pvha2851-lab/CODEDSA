@@ -1,13 +1,13 @@
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
-ll biendoiso(string s){
-	int n=s.size();
-	ll k=1;
+const ll mod=1e9+7;
+ll biendoi(string s){
+	reverse(s.begin(),s.end());
 	ll res=0;
-	for(int i=n-1;i>=0;i--){
-		if(s[i]=='1')	res+=k;
-		k=k*2;
+	for(int i=0;i<s.size();i++){
+		ll bin=pow(2,i);
+		if(s[i]=='1')	res+=bin;
 	}
 	return res;
 }
@@ -17,8 +17,9 @@ int main(){
 	while(t--){
 		string s1,s2;
 		cin>>s1>>s2;
-		ll x1=biendoiso(s1),x2=biendoiso(s2);
-		cout<<x1*x2<<endl;
+		ll so1=biendoi(s1);
+		ll so2=biendoi(s2);
+		cout<<so1*so2<<endl;
 	}
 	return 0;
 }
