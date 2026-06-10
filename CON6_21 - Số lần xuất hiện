@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool cmp(pair<int,int> a,pair<int,int> b){
-	if(a.second==b.second)	return a.first<b.first;
-	return a.second>b.second;
+bool cmp(pair<int,int>s1,pair<int,int>s2){
+	if(s1.second==s2.second)	return s1.first<s2.first;
+	return s1.second>s2.second;
 }
 int main(){
 	int t;
@@ -10,22 +10,20 @@ int main(){
 	while(t--){
 		int n;
 		cin>>n;
-		int a[n];
-		map<int,int> cnt;
+		map<int,int> a;
 		for(int i=0;i<n;i++){
-			cin>>a[i];
-			cnt[a[i]]++;
+			int x;cin>>x;
+			a[x]++;
 		}
-		int l=cnt.size();
-		pair<int,int> p[l];
-		int i=0;
-		for(auto it:cnt){
-			p[i++]=make_pair(it.first,it.second);
+		vector<pair<int,int>> b;
+		for(auto p:a){
+			b.push_back({p.first,p.second});
 		}
-		sort(p,p+l,cmp);
-		for(int i=0;i<l;i++){
-			for(int j=0;j<p[i].second;j++)
-				cout<<p[i].first<<" ";
+		sort(b.begin(),b.end(),cmp);
+		for(auto p:b){
+			for(int i=1;i<=p.second;i++){
+				cout<<p.first<<" ";
+			}
 		}
 		cout<<endl;
 	}
