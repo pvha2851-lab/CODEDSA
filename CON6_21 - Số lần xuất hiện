@@ -16,15 +16,10 @@ int main(){
 			a[x]++;
 		}
 		vector<pair<int,int>> b;
-		for(auto p:a){
-			b.push_back({p.first,p.second});
-		}
+		for(auto p:a)	b.push_back({p.first,p.second});
 		sort(b.begin(),b.end(),cmp);
-		for(auto p:b){
-			for(int i=1;i<=p.second;i++){
-				cout<<p.first<<" ";
-			}
-		}
+		for(auto p:b)
+			for(int i=1;i<=p.second;i++)	cout<<p.first<<" ";
 		cout<<endl;
 	}
 	return 0;
