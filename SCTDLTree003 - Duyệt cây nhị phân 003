@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+	int data;
+	node *left;
+	node *right;
+};
+node* makeNode(int x){
+	node *newNode=new node;
+	newNode->data=x;
+	newNode->left=NULL;
+	newNode->right=NULL;
+	return newNode;
+}
+node* buildTree(vector<int> &a,int i,int n){
+	if(i>=n||a[i]==-1)	return NULL;
+	node *root=makeNode(a[i]);
+	root->left=buildTree(a,2*i+1,n);
+	root->right=buildTree(a,2*i+2,n);
+	return root;
+}
+void levelOrder(node *root){
+	if(root==NULL)	return ;
+	queue<node*> Q;
+	Q.push(root);
+	vector<vector<int>> res;
+	while(!Q.empty()){
+		int l=Q.size();
+		vector<int> level;
+		while(l--){
+			node *tmp=Q.front();Q.pop();
+			level.push_back(tmp->data);
+			if(tmp->left!=NULL)	Q.push(tmp->left);
+			if(tmp->right!=NULL)	Q.push(tmp->right);
+		}
+		res.push_back(level);
+	}
+	for(int i=res.size()-1;i>=0;i--){
+		for(int j=0;j<res[i].size();j++){
+			cout<<res[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		vector<int> a(n);
+		for(int i=0;i<n;i++)	cin>>a[i];
+		node *root=buildTree(a,0,n);
+		levelOrder(root);
+	}
+	return 0;
+}
