@@ -10,7 +10,7 @@ node* makeNode(int x){
 	newNode->data=x;
 	newNode->left=NULL;
 	newNode->right=NULL;
-	return newNode;
+	return newNode; 
 }
 node* findNode(node *root,int x){
 	if(root==NULL)	return NULL;
@@ -20,32 +20,29 @@ node* findNode(node *root,int x){
 	return findNode(root->right,x);
 }
 void levelOrder(node *root){
+	if(root==NULL)	return;
 	queue<node*> Q;
 	Q.push(root);
-	cout<<root->data<<" ";
 	while(!Q.empty()){
-		node *tmp=Q.front();Q.pop();
-		if(tmp->left!=NULL){
-			Q.push(tmp->left);
-			cout<<tmp->left->data<<" ";
+		int l=Q.size();
+		while(l--){
+			node *tmp=Q.front();Q.pop();
+			cout<<tmp->data<<" ";
+			if(tmp->left)	Q.push(tmp->left);
+			if(tmp->right)	Q.push(tmp->right);
 		}
-		if(tmp->right!=NULL){
-			Q.push(tmp->right);
-			cout<<tmp->right->data<<" ";
-		}
-	}
+	}	
 }
 int main(){
 	int t;
 	cin>>t;
-	cin.ignore();
 	while(t--){
+		int n;
+		cin>>n;
 		node *root=NULL;
 		set<int> parent,child;
-		int n;cin>>n;
 		for(int i=0;i<n;i++){
-			int x,y;
-			char z;
+			int x,y;char z;
 			cin>>x>>y>>z;
 			parent.insert(x);
 			child.insert(y);
