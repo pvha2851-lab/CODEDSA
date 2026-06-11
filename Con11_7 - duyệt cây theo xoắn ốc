@@ -12,36 +12,28 @@ node* makeNode(int x){
 	newNode->left=NULL;
 	return newNode;
 }
-node *findNode(node *root,int x){
+node* findNode(node *root,int x){
 	if(root==NULL)	return NULL;
 	if(root->data==x)	return root;
 	node *left=findNode(root->left,x);
 	if(left!=NULL)	return left;
 	return findNode(root->right,x);
 }
-void spiral(node *root){
+void xoanoc(node *root){
 	stack<node*> s1,s2;
 	s1.push(root);
 	while(!s1.empty()||!s2.empty()){
 		while(!s1.empty()){
 			node *top=s1.top();s1.pop();
 			cout<<top->data<<" ";
-			if(top->right!=NULL){
-				s2.push(top->right);
-			}
-			if(top->left!=NULL){
-				s2.push(top->left);
-			}
+			if(top->right!=NULL)	s2.push(top->right);
+			if(top->left!=NULL)		s2.push(top->left);
 		}
 		while(!s2.empty()){
 			node *top=s2.top();s2.pop();
 			cout<<top->data<<" ";
-			if(top->left!=NULL){
-				s1.push(top->left);
-			}
-			if(top->right!=NULL){
-				s1.push(top->right);
-			}
+			if(top->left!=NULL)	s1.push(top->left);
+			if(top->right!=NULL)		s1.push(top->right);
 		}
 	}
 }
@@ -63,7 +55,7 @@ int main(){
 			if(cha==NULL)	cha=makeNode(x);
 			node *con=makeNode(y);
 			if(z=='L')	cha->left=con;
-			else cha->right=con;
+			else	cha->right=con;
 		}
 		int rootVal;
 		for(int x:parent){
@@ -73,7 +65,7 @@ int main(){
 			}
 		}
 		root=findNode(root,rootVal);
-		spiral(root);
+		xoanoc(root);
 		cout<<endl;
 	}
 	return 0;
